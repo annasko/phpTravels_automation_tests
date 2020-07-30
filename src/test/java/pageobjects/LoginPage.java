@@ -26,6 +26,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "/html/body/div/div[1]/section/div/div[1]/div[1]/div/h3")
     private WebElement loginText;
 
+
     public AccountPage goToAccountPage() {
         return new AccountPage(driver, wait);
     }

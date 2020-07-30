@@ -7,6 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.sound.midi.ShortMessage;
+
 public class BasePage {
 
     final String URL = "https://www.phptravels.net";
@@ -18,6 +20,19 @@ public class BasePage {
 
     @FindBy(xpath = "//*[@id=\"//header-waypoint-sticky\"]/div[1]/div/div/div[2]/div/ul/li[3]/div/div/div/a[1]")
     WebElement loginButton;
+
+    @FindBy(xpath = "//*[@id=\"//header-waypoint-sticky\"]/div[1]/div/div/div[2]/div/ul/li[3]/div/div/div/a[2]")
+    WebElement signInButton;
+
+    @FindBy(xpath = "//*[@id=\"//header-waypoint-sticky\"]/div[1]/div/div/div[2]/div/ul/li[2]/div")
+    WebElement changeLanguageButton;
+
+    @FindBy(xpath = "//*[@id=\"ru\"]")
+    WebElement russianLanguageButton;
+
+    @FindBy(xpath = "//*[@id=\"de\"]")
+    WebElement germanLanguageButton;
+
 
     public BasePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -37,11 +52,29 @@ public class BasePage {
         loginButton.click();
         return new LoginPage(driver, wait);
     }
+
+    public RegisterPage goToRegisterPage () {
+        wait.until(ExpectedConditions.elementToBeClickable(myAccountButton));
+        myAccountButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(signInButton));
+        signInButton.click();
+        return new RegisterPage (driver, wait);
+    }
+
+    public HomePage changeToRussianLanguage () {
+        wait.until(ExpectedConditions.elementToBeClickable(changeLanguageButton));
+        changeLanguageButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(russianLanguageButton));
+        russianLanguageButton.click();
+        return new HomePage(driver, wait);
+    }
+
+    public HomePage changeToGermanLanguage () {
+        wait.until(ExpectedConditions.elementToBeClickable(changeLanguageButton));
+        changeLanguageButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(germanLanguageButton));
+        germanLanguageButton.click();
+        return new HomePage(driver, wait);
+    }
 }
 
-//public LoginPage goToLogin () {
-//    wait.until(ExpectedConditions.elementToBeClickable(signInButton));
-//    signInButton.click();
-//    return new LoginPage(driver, wait);
-//}
-//}

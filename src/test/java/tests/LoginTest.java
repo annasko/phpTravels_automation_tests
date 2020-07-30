@@ -48,7 +48,7 @@ class LoginTest extends BaseTest {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         LoginPage loginPage = homePage.goToLoginPage();
-        loginPage.login("user@user.user", "DeMouse");
+        loginPage.login("user@user.pl", "DemouseR");
         Assertions.assertTrue(loginPage.isEmailAndPasswordRequiredAlertDisplayed());
     }
     @Test
