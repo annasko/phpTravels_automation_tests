@@ -8,7 +8,7 @@ import pageobjects.LoginPage;
 
 class LoginTest extends BaseTest {
     @Test
-    void shouldLoginPageIsOpen() {
+    void shouldLoginPageBeOpen() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         LoginPage loginPage = homePage.goToLoginPage();
@@ -27,7 +27,7 @@ class LoginTest extends BaseTest {
     }
 
     @Test
-    void shouldDisplayedInvalidEmailAlertWhenWrongEmailIsProvided() {
+    void shouldDisplayInvalidEmailAlertWhenWrongEmailIsProvided() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         LoginPage loginPage = homePage.goToLoginPage();
@@ -36,23 +36,25 @@ class LoginTest extends BaseTest {
     }
 
     @Test
-    void shouldDisplayedInvalidPasswordAlertWhenWrongPasswordIsProvided() {
+    void shouldDisplayInvalidPasswordAlertWhenWrongPasswordIsProvided() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         LoginPage loginPage = homePage.goToLoginPage();
         loginPage.login("user@phptravels.com", "DeMouse");
         Assertions.assertTrue(loginPage.isPasswordRequiredAlertDisplayed());
     }
+
     @Test
-    void shouldDisplayedInvalidEmailAndPasswordAlertWhenWrongEmailAndPasswordAreProvided() {
+    void shouldDisplayInvalidEmailAndPasswordAlertWhenWrongEmailAndPasswordAreProvided() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         LoginPage loginPage = homePage.goToLoginPage();
         loginPage.login("user@user.pl", "DemouseR");
         Assertions.assertTrue(loginPage.isEmailAndPasswordRequiredAlertDisplayed());
     }
+
     @Test
-    void shouldDisplayedEmailAndPasswordRequiredAlertWhenNoEmailAndPasswordAreProvided () {
+    void shouldDisplayEmailAndPasswordRequiredAlertWhenNoEmailAndPasswordAreProvided() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         LoginPage loginPage = homePage.goToLoginPage();

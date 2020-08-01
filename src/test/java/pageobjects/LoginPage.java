@@ -12,19 +12,19 @@ public class LoginPage extends BasePage {
     }
 
     @FindBy(name = "username")
-    private WebElement emailField;
+    WebElement emailField;
 
     @FindBy(name = "password")
-    private WebElement passwordField;
+    WebElement passwordField;
 
     @FindBy(className = "loginbtn")
-    private WebElement submitLoginButton;
+    WebElement submitLoginButton;
 
     @FindBy(className = "alert-danger")
-    private WebElement alertDanger;
+    WebElement alertDanger;
 
     @FindBy(xpath = "/html/body/div/div[1]/section/div/div[1]/div[1]/div/h3")
-    private WebElement loginText;
+    WebElement loginText;
 
 
     public AccountPage goToAccountPage() {
@@ -36,24 +36,24 @@ public class LoginPage extends BasePage {
         passwordField.sendKeys(password);
         submitLoginButton.click();
     }
+
     public boolean isLoginPageDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(loginText));
         return loginText.isDisplayed();
     }
+
     public boolean isEmailRequiredAlertDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(alertDanger));
         return alertDanger.getText().contains("Invalid Email");
     }
 
-    public boolean isPasswordRequiredAlertDisplayed(){
+    public boolean isPasswordRequiredAlertDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(alertDanger));
         return alertDanger.getText().contains("Password");
     }
 
-    public boolean isEmailAndPasswordRequiredAlertDisplayed(){
+    public boolean isEmailAndPasswordRequiredAlertDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(alertDanger));
         return alertDanger.getText().contains("Invalid Email or Password");
     }
-
-
 }

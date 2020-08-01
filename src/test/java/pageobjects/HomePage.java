@@ -1,7 +1,5 @@
 package pageobjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +20,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"select2-drop\"]/ul/li[1]/ul/li[2]")
     WebElement selectTriaHotelIstanbul;
 
-    @FindBy(id = "s2id_autogen12")
+    @FindBy(css = "div.locationlistHotels")
     WebElement destinationInput;
 
     @FindBy(id = "s2id_location_from")
@@ -40,9 +38,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"flights\"]/div/div/form/div/div/div[3]/div[4]/button")
     WebElement searchFlightsButton;
 
-    @FindBy(id = "select2-drop-mask")
-    WebElement searchFlightsButtonContainer;
-
     @FindBy(xpath = "//*[@id=\"search\"]/div/div/div/div/div/nav/ul/li[1]/a")
     WebElement hotelsButton;
 
@@ -56,19 +51,18 @@ public class HomePage extends BasePage {
     WebElement goToNextMonthOnDepartDataButton;
 
     @FindBy(xpath = "//*[@id=\"datepickers-container\"]/div[7]/div/div/div[2]/div[33]")
-    WebElement departDateFromNextMonth;
+    WebElement departDateFromOtherMonth;
 
-    @FindBy(xpath = "//*[@id=\"datepickers-container\"]/div[8]/div/div/div[2]/div[37]")
-    WebElement returnDataFromNextMonth;
+    @FindBy(xpath = "//*[@id=\"datepickers-container\"]/div[8]/div/div/div[2]/div[28]")
+    WebElement returnDateFromOtherMonth;
 
     @FindBy(xpath = "//*[@id=\"flights\"]/div/div/form/div/div/div[3]/div[3]/div/div/div[1]/div/div[2]/div/span/button[1]")
     WebElement addAdultToFlightsButton;
 
-
-    @FindBy (xpath = "//*[@id=\"flights\"]/div/div/form/div/div/div[1]/div[2]/div/div/a")
+    @FindBy(xpath = "//*[@id=\"flights\"]/div/div/form/div/div/div[1]/div[2]/div/div/a")
     WebElement searchTypeClass;
 
-    @FindBy (xpath = "//*[@id=\"flights\"]/div/div/form/div/div/div[1]/div[2]/div/div/div/ul/li[2]")
+    @FindBy(xpath = "//*[@id=\"flights\"]/div/div/form/div/div/div[1]/div[2]/div/div/div/ul/li[2]")
     WebElement businessClassButton;
 
     @FindBy(xpath = "//*[@id=\"flights\"]/div/div/form/div/div/div[1]/div[2]/div/div/div/ul/li[3]")
@@ -91,7 +85,7 @@ public class HomePage extends BasePage {
         return flightsButton.getText().contains("FLÜGE");
     }
 
-    public SearchHotelsPage goToSearchHotelsPageWithNoResults(String destination) {
+    public HotelDetailsPage goToSearchHotelsPageWithNoResults(String destination) {
         wait.until(ExpectedConditions.elementToBeClickable(hotelsButton));
         hotelsButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(destinationInput));
@@ -101,10 +95,10 @@ public class HomePage extends BasePage {
         selectDisneylandParis.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchHotelsButton));
         searchHotelsButton.click();
-        return new SearchHotelsPage(driver, wait);
+        return new HotelDetailsPage(driver, wait);
     }
 
-    public SearchHotelsPage goToSearchHotelsPageWithOneResult() {
+    public HotelDetailsPage goToSearchHotelsPageWithOneResult() {
         wait.until(ExpectedConditions.elementToBeClickable(hotelsButton));
         hotelsButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(destinationInput));
@@ -113,10 +107,10 @@ public class HomePage extends BasePage {
         selectTriaHotelIstanbul.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchHotelsButton));
         searchHotelsButton.click();
-        return new SearchHotelsPage(driver, wait);
+        return new HotelDetailsPage(driver, wait);
     }
 
-    public SearchHotelsPage goToSearchHotelsPageWithMoreThanOneResults() {
+    public HotelDetailsPage goToSearchHotelsPageWithMoreThanOneResults() {
         wait.until(ExpectedConditions.elementToBeClickable(hotelsButton));
         hotelsButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(destinationInput));
@@ -125,10 +119,10 @@ public class HomePage extends BasePage {
         selectAlzerHotelInstanbul.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchHotelsButton));
         searchHotelsButton.click();
-        return new SearchHotelsPage(driver, wait);
+        return new HotelDetailsPage(driver, wait);
     }
 
-    public SearchFlightsPage goToSearchFlightsPageWithResults(String airport) {
+    public FlightListsPage goToSearchFlightsPageWithResults(String airport) {
         wait.until(ExpectedConditions.elementToBeClickable(flightsButton));
         flightsButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(fromAirportInput));
@@ -139,20 +133,20 @@ public class HomePage extends BasePage {
 
         wait.until(ExpectedConditions.elementToBeClickable(searchFlightsButton));
         searchFlightsButton.click();
-        return new SearchFlightsPage(driver, wait);
+        return new FlightListsPage(driver, wait);
     }
 
-    public SearchFlightsPage goToSearchFlightsPageWithRoundTripResults() {
+    public FlightListsPage goToSearchFlightsPageWithRoundTripResults() {
         wait.until(ExpectedConditions.elementToBeClickable(flightsButton));
         flightsButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(roundTripButton));
         roundTripButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchFlightsButton));
         searchFlightsButton.click();
-        return new SearchFlightsPage(driver, wait);
+        return new FlightListsPage(driver, wait);
     }
 
-    public SearchFlightsPage goToSearchFlightsPageWithChangeDepartAndReturnDate() {
+    public FlightListsPage goToSearchFlightsPageWithChangeDepartAndReturnDate() {
         wait.until(ExpectedConditions.elementToBeClickable(flightsButton));
         flightsButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(roundTripButton));
@@ -161,18 +155,18 @@ public class HomePage extends BasePage {
         departDateButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(goToNextMonthOnDepartDataButton));
         goToNextMonthOnDepartDataButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(departDateFromNextMonth));
-        departDateFromNextMonth.click();
+        wait.until(ExpectedConditions.elementToBeClickable(departDateFromOtherMonth));
+        departDateFromOtherMonth.click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(returnDataFromNextMonth));
-        returnDataFromNextMonth.click();
+        wait.until(ExpectedConditions.elementToBeClickable(returnDateFromOtherMonth));
+        returnDateFromOtherMonth.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchFlightsButton));
         searchFlightsButton.click();
-        return new SearchFlightsPage(driver, wait);
+        return new FlightListsPage(driver, wait);
 
     }
 
-    public SearchFlightsPage goToSearchFlightsPageWithChoose100adults () {
+    public FlightListsPage goToSearchFlightsPageWithChoose100Adults() {
         wait.until(ExpectedConditions.elementToBeClickable(flightsButton));
         flightsButton.click();
         for (int i = 0; i < 99; i++) {
@@ -181,10 +175,10 @@ public class HomePage extends BasePage {
         }
         wait.until(ExpectedConditions.elementToBeClickable(searchFlightsButton));
         searchFlightsButton.click();
-        return new SearchFlightsPage(driver, wait);
+        return new FlightListsPage(driver, wait);
     }
 
-    public SearchFlightsPage goToSearchFlightsPageWithBusinessClass () {
+    public FlightListsPage goToSearchFlightsPageWithBusinessClass() {
         wait.until(ExpectedConditions.elementToBeClickable(flightsButton));
         flightsButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchTypeClass));
@@ -193,10 +187,10 @@ public class HomePage extends BasePage {
         businessClassButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchFlightsButton));
         searchFlightsButton.click();
-        return new SearchFlightsPage(driver, wait);
+        return new FlightListsPage(driver, wait);
     }
 
-    public SearchFlightsPage goToSearchFlightsPageWithEconomyClass() {
+    public FlightListsPage goToSearchFlightsPageWithEconomyClass() {
         wait.until(ExpectedConditions.elementToBeClickable(flightsButton));
         flightsButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchTypeClass));
@@ -205,10 +199,10 @@ public class HomePage extends BasePage {
         economyClassButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchFlightsButton));
         searchFlightsButton.click();
-        return new SearchFlightsPage(driver, wait);
+        return new FlightListsPage(driver, wait);
     }
 
-    public SearchFlightsPage goToSearchFlightsPageWithFirstClass() {
+    public FlightListsPage goToSearchFlightsPageWithFirstClass() {
         wait.until(ExpectedConditions.elementToBeClickable(flightsButton));
         flightsButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchTypeClass));
@@ -217,6 +211,6 @@ public class HomePage extends BasePage {
         firstClassButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(searchFlightsButton));
         searchFlightsButton.click();
-        return new SearchFlightsPage(driver, wait);
+        return new FlightListsPage(driver, wait);
     }
 }

@@ -6,14 +6,15 @@ import pageobjects.HomePage;
 
 public class ChangeLanguageTest extends BaseTest {
     @Test
-    void shouldChangeToRussianLanguage () {
+    void shouldChangeToRussianLanguage() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         HomePage russianHomePage = homePage.changeToRussianLanguage();
         Assertions.assertTrue(russianHomePage.isRussianLanguageDisplayed());
     }
+
     @Test
-    void shouldChangeToGermanLanguage () {
+    void shouldChangeToGermanLanguage() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         HomePage germanHomePage = homePage.changeToGermanLanguage();

@@ -4,13 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pageobjects.AccountPage;
 import pageobjects.HomePage;
-import pageobjects.LoginPage;
 import pageobjects.RegisterPage;
 
 public class RegisterTest extends BaseTest {
 
     @Test
-    void shouldRegisterPageIsOpen () {
+    void shouldRegisterPageBeOpen() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         RegisterPage registerPage = homePage.goToRegisterPage();
@@ -18,8 +17,8 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    void shouldRegisterWithCorrectData () {
-        HomePage homePage= new HomePage(driver, wait);
+    void shouldRegisterWithCorrectData() {
+        HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         RegisterPage registerPage = homePage.goToRegisterPage();
         registerPage.register("Piotr", "Nowak", "555555555", "pnowak@no.eu", "123456", "123456");
@@ -28,7 +27,7 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    void shouldDisplayEmailFieldMustContainAlertWhenWrongEmailIsProvided () {
+    void shouldDisplayEmailFieldMustContainAlertWhenWrongEmailIsProvided() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         RegisterPage registerPage = homePage.goToRegisterPage();
@@ -37,7 +36,7 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    void shouldDisplayPasswordTooShortAlertWhenShortEmailIsProvided () {
+    void shouldDisplayPasswordTooShortAlertWhenShortEmailIsProvided() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         RegisterPage registerPage = homePage.goToRegisterPage();
@@ -46,7 +45,7 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    void shouldDisplayPasswordNotMatchingAlertWhenNotMatchingPasswordIsProvided () {
+    void shouldDisplayPasswordNotMatchingAlertWhenNotMatchingPasswordIsProvided() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         RegisterPage registerPage = homePage.goToRegisterPage();

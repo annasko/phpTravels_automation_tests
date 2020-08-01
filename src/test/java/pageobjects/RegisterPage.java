@@ -46,11 +46,12 @@ public class RegisterPage extends BasePage {
         confirmPasswordField.sendKeys(confirmPassword);
         confirmPasswordField.sendKeys(Keys.ENTER);
     }
+
     public AccountPage goToAccountPage() {
         return new AccountPage(driver, wait);
     }
 
-    public boolean isRegisterPageDisplayed () {
+    public boolean isRegisterPageDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(singUpText));
         return singUpText.isDisplayed();
     }
@@ -60,12 +61,12 @@ public class RegisterPage extends BasePage {
         return alertDanger.getText().contains("The Password field must be at least 6 characters in");
     }
 
-    public boolean isConfirmPasswordAlertDisplayed () {
+    public boolean isConfirmPasswordAlertDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(alertDanger));
         return alertDanger.getText().contains("Password not matching with confirm password.");
     }
 
-    public boolean isEmailAlertDisplayed () {
+    public boolean isEmailAlertDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(alertDanger));
         return alertDanger.getText().contains("Email field must contain a valid email address");
     }

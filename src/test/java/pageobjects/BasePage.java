@@ -7,8 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.sound.midi.ShortMessage;
-
 public class BasePage {
 
     final String URL = "https://www.phptravels.net";
@@ -33,6 +31,8 @@ public class BasePage {
     @FindBy(xpath = "//*[@id=\"de\"]")
     WebElement germanLanguageButton;
 
+    @FindBy(xpath = "//*[@id=\"mobileMenuMain\"]/nav/ul[1]/li/a")
+    WebElement goToHomePageButton;
 
     public BasePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -53,15 +53,15 @@ public class BasePage {
         return new LoginPage(driver, wait);
     }
 
-    public RegisterPage goToRegisterPage () {
+    public RegisterPage goToRegisterPage() {
         wait.until(ExpectedConditions.elementToBeClickable(myAccountButton));
         myAccountButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(signInButton));
         signInButton.click();
-        return new RegisterPage (driver, wait);
+        return new RegisterPage(driver, wait);
     }
 
-    public HomePage changeToRussianLanguage () {
+    public HomePage changeToRussianLanguage() {
         wait.until(ExpectedConditions.elementToBeClickable(changeLanguageButton));
         changeLanguageButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(russianLanguageButton));
@@ -69,11 +69,17 @@ public class BasePage {
         return new HomePage(driver, wait);
     }
 
-    public HomePage changeToGermanLanguage () {
+    public HomePage changeToGermanLanguage() {
         wait.until(ExpectedConditions.elementToBeClickable(changeLanguageButton));
         changeLanguageButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(germanLanguageButton));
         germanLanguageButton.click();
+        return new HomePage(driver, wait);
+    }
+
+    public HomePage goToHomePage() {
+        wait.until(ExpectedConditions.elementToBeClickable(goToHomePageButton));
+        goToHomePageButton.click();
         return new HomePage(driver, wait);
     }
 }

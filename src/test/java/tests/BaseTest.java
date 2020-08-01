@@ -20,9 +20,9 @@ public class BaseTest {
     @BeforeAll
     static void setUp() {
         driver = prepareWebDriver("chrome");
-        wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, 10);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     private static WebDriver prepareWebDriver(String name) {
@@ -55,10 +55,11 @@ public class BaseTest {
     static void tearDown() throws InterruptedException {
         driver.quit();
     }
-@Test
-    void shouldHomePageBoOpen() {
+
+    @Test
+    void shouldHomePageBeOpen() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
 
-}
+    }
 }
