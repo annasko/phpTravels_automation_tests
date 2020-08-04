@@ -15,7 +15,7 @@ public class BookHotelTest extends BaseTest {
         AccountPage accountPage = loginPage.goToAccountPage();
         accountPage.waitUntilAccountPageIsLoaded();
         accountPage.goToHomePage();
-        HotelDetailsPage hotelDetailsPage = homePage.goToSearchHotelsPageWithOneResult();
+        HotelDetailsPage hotelDetailsPage = homePage.goToTriaOneResultFoundPage();
         BookingConfirmationPage bookingConfirmationPage = hotelDetailsPage.goToBookPage();
         BookingSummaryPage bookingSummaryPage = bookingConfirmationPage.confirmHotelBooking();
         Assertions.assertTrue(bookingSummaryPage.isBookingAlertDisplayed());

@@ -7,10 +7,10 @@ import pageobjects.HotelDetailsPage;
 
 public class SearchHotelsTest extends BaseTest {
     @Test
-    void shouldNoResultsFoundDisplay() {
+    void shouldDisneylandNoFoundDisplay() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
-        HotelDetailsPage hotelDetailsPage = homePage.goToSearchHotelsPageWithNoResults("Paris");
+        HotelDetailsPage hotelDetailsPage = homePage.goToDisneylandNoResultsFoundPage();
         Assertions.assertTrue(hotelDetailsPage.isDisneylandHotelDisplayed());
     }
 
@@ -18,15 +18,15 @@ public class SearchHotelsTest extends BaseTest {
     void shouldTriaHotelIstanbulSpecialDisplay() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
-        HotelDetailsPage hotelDetailsPage = homePage.goToSearchHotelsPageWithOneResult();
+        HotelDetailsPage hotelDetailsPage = homePage.goToTriaOneResultFoundPage();
         Assertions.assertTrue(hotelDetailsPage.isTriaHotelInInstanbulDisplayed());
     }
 
     @Test
-    void shouldMoreResultsFoundDisplay() {
+    void shouldAlzerHotelIstanbulManyResultsDisplay() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
-        HotelDetailsPage hotelDetailsPage = homePage.goToSearchHotelsPageWithMoreThanOneResults();
+        HotelDetailsPage hotelDetailsPage = homePage.goToAlzerhManyResultsFoundPage();
         Assertions.assertTrue(hotelDetailsPage.isAlzerHotelInInstanbulDisplay());
     }
 }

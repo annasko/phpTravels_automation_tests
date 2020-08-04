@@ -26,10 +26,10 @@ public class FlightListsPage extends BasePage {
     WebElement typeClassText;
 
     @FindBy(className = "text-center")
-    List<WebElement> changeCurrencyButtons;
+    List<WebElement> changeCurrencyButtons; //usunąć
 
     @FindBy(className = "dropdown-currency")
-    List<WebElement> currencyList;
+    List<WebElement> currencyList; //usunąć
 
     @FindBy(xpath = "//*[@id=\"LIST\"]/li[1]/div/div[1]/div[2]/form/div[2]/div/div/p[1]/strong")
     WebElement flightPrice;
@@ -61,26 +61,29 @@ public class FlightListsPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(typeClassText));
         return typeClassText.getText().contains(typeClass);
     }
+//    public void changeCurrency (int currencyIndex) {
+//        WebElement listElements = currencyList.get(0);
+//        listElements.click();
+//        WebElement currencyChangeElement = changeCurrencyButtons.get(currencyIndex);
+//        currencyChangeElement.click();
+//    }
 
-    public boolean isChangeToSARCurrencyDisplayed(String currency) {
-        WebElement listElements = currencyList.get(0);
-        listElements.click();
-        WebElement sarElement = changeCurrencyButtons.get(2);
-        sarElement.click();
+//    public boolean isChangeToSARCurrencyDisplayed(String currency) {
+////        WebElement listElements = currencyList.get(0);
+////        listElements.click();
+////        WebElement sarElement = changeCurrencyButtons.get(2);
+////        sarElement.click();
+//        clickChangeCurrency(2);
+//        wait.until(ExpectedConditions.visibilityOf(flightPrice));
+//        return flightPrice.getText().contains(currency);
+//    }
+
+    public boolean isCurrencyDisplayed(String currency) {
         wait.until(ExpectedConditions.visibilityOf(flightPrice));
         return flightPrice.getText().contains(currency);
     }
 
-    public boolean isChangeToUSDCurrencyDisplayed(String currency) {
-        WebElement listElements = currencyList.get(0);
-        listElements.click();
-        WebElement usdElement = changeCurrencyButtons.get(0);
-        usdElement.click();
-        wait.until(ExpectedConditions.visibilityOf(flightPrice));
-        return flightPrice.getText().contains(currency);
-    }
-
-    public int extractFirstFlightPriceValue(int currencyNumber) {
+    public int extractFirstFlightPriceValue() {
         wait.until(ExpectedConditions.visibilityOf(flightPrice));
         int flightPriceValue = Integer.parseInt(flightPrice.getText().substring(4));
         return flightPriceValue;
@@ -92,10 +95,11 @@ public class FlightListsPage extends BasePage {
     }
 
     public FlightListsPage changeCurrency(int newCurrencyIndexNumber) throws InterruptedException {
-        WebElement listElements = currencyList.get(0);
-        listElements.click();
-        WebElement currencyName = changeCurrencyButtons.get(newCurrencyIndexNumber);
-        currencyName.click();
+//        WebElement listElements = currencyList.get(0);
+//        listElements.click();
+//        WebElement currencyName = changeCurrencyButtons.get(newCurrencyIndexNumber);
+//        currencyName.click();
+        clickChangeCurrency(newCurrencyIndexNumber);
         Thread.sleep(5000);
         return new FlightListsPage(driver, wait);
     }
@@ -116,11 +120,14 @@ public class FlightListsPage extends BasePage {
         return true;
     }
 
-    public boolean isChangeAirlinesCorrectlyDisplayed() {
+
+    public void selectAirArabiaAirlines () {
         wait.until(ExpectedConditions.visibilityOf(airArabiaAirlinesButton));
         airArabiaAirlinesButton.click();
-        return nameOfAirlinesText.getText().equals("Air Arabia Maroc");
+    }
 
+    public boolean isAirlineNameCorrectlyDisplayed(String airlineName) {
+        return nameOfAirlinesText.getText().equals(airlineName);
     }
 
 }

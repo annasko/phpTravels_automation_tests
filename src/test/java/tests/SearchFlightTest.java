@@ -29,7 +29,7 @@ public class SearchFlightTest extends BaseTest {
     void shouldReturnRoundTripWithChangeDepartAndReturnDataResultsFoundDisplay() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
-        FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithChangeDepartAndReturnDate();
+        FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithChangedDepartAndReturnDate();
         Assertions.assertTrue(flightListsPage.isFlightsPageDisplayed(" and return flight"));
     }
 
@@ -37,7 +37,7 @@ public class SearchFlightTest extends BaseTest {
     void shouldAdd100AdultsAndReturnTripResultsFoundDisplay() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
-        FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithChoose100Adults();
+        FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithManyAdults();
         BookingConfirmationPage bookFlightPage = flightListsPage.goToBookingConfirmationPage();
         Assertions.assertTrue(bookFlightPage.isNumberOfAdultsDisplayed("100"));
     }
@@ -67,19 +67,21 @@ public class SearchFlightTest extends BaseTest {
     }
 
     @Test
-    void shouldChangeCurrencyToSAR() {
+    void shouldChangeCurrencyToSAR() throws InterruptedException {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
-        Assertions.assertTrue(flightListsPage.isChangeToSARCurrencyDisplayed("SAR"));
+        FlightListsPage reloadedFlightListPage = flightListsPage.changeCurrency(2);
+        Assertions.assertTrue(reloadedFlightListPage.isCurrencyDisplayed("SAR"));
     }
 
     @Test
-    void shouldChangeCurrencyToUSD() {
+    void shouldChangeCurrencyToUSD() throws InterruptedException {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
-        Assertions.assertTrue(flightListsPage.isChangeToUSDCurrencyDisplayed("USD"));
+        FlightListsPage reloadedFlightListPage = flightListsPage.changeCurrency(0);
+        Assertions.assertTrue(reloadedFlightListPage.isCurrencyDisplayed("USD"));
     }
 
 
@@ -88,9 +90,9 @@ public class SearchFlightTest extends BaseTest {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         FlightListsPage flightListsPageUSD = homePage.goToSearchFlightsPageWithResults("WWA");
-        int usdValue = flightListsPageUSD.extractFirstFlightPriceValue(0);
+        int usdValue = flightListsPageUSD.extractFirstFlightPriceValue();
         FlightListsPage flightListsPageJPY = flightListsPageUSD.changeCurrency(6);
-        int jpyValue = flightListsPageJPY.extractFirstFlightPriceValue(6);
+        int jpyValue = flightListsPageJPY.extractFirstFlightPriceValue();
         Assertions.assertTrue((usdValue * 100 < jpyValue) && (usdValue * 150 > jpyValue));
     }
 
@@ -107,7 +109,8 @@ public class SearchFlightTest extends BaseTest {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
-        Assertions.assertTrue(flightListsPage.isChangeAirlinesCorrectlyDisplayed());
+        flightListsPage.selectAirArabiaAirlines();
+        Assertions.assertTrue(flightListsPage.isAirlineNameCorrectlyDisplayed("Air Arabia Maroc"));
     }
 
 }

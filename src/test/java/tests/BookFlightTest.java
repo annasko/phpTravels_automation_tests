@@ -15,7 +15,7 @@ public class BookFlightTest extends BaseTest {
         AccountPage accountPage = loginPage.goToAccountPage();
         accountPage.waitUntilAccountPageIsLoaded();
         accountPage.goToHomePage();
-        FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithChoose100Adults();
+        FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithManyAdults();
         BookingConfirmationPage bookFlightPage = flightListsPage.goToBookingConfirmationPage();
         BookingSummaryPage bookingSummaryPage = bookFlightPage.fillPassengerDataAndConfirm("Tadeusz", "30", "frgs4453");
         Assertions.assertTrue(bookingSummaryPage.isBookingAlertDisplayed());

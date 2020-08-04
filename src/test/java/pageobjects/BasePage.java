@@ -7,6 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class BasePage {
 
     final String URL = "https://www.phptravels.net";
@@ -33,6 +35,12 @@ public class BasePage {
 
     @FindBy(xpath = "//*[@id=\"mobileMenuMain\"]/nav/ul[1]/li/a")
     WebElement goToHomePageButton;
+
+    @FindBy(className = "text-center") //dodane
+    List<WebElement> changeCurrencyButtons;
+
+    @FindBy(className = "dropdown-currency") //dodane
+    List<WebElement> currencyList;
 
     public BasePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -62,25 +70,33 @@ public class BasePage {
     }
 
     public HomePage changeToRussianLanguage() {
-        wait.until(ExpectedConditions.elementToBeClickable(changeLanguageButton));
-        changeLanguageButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(russianLanguageButton));
-        russianLanguageButton.click();
-        return new HomePage(driver, wait);
+       return changeLanguage(russianLanguageButton);
     }
 
     public HomePage changeToGermanLanguage() {
-        wait.until(ExpectedConditions.elementToBeClickable(changeLanguageButton));
-        changeLanguageButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(germanLanguageButton));
-        germanLanguageButton.click();
-        return new HomePage(driver, wait);
+      return changeLanguage(germanLanguageButton);
     }
 
+    public HomePage changeLanguage (WebElement languageButton) {
+        wait.until(ExpectedConditions.elementToBeClickable(changeLanguageButton));
+        changeLanguageButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(languageButton));
+        languageButton.click();
+        return new HomePage(driver, wait);
+    }
     public HomePage goToHomePage() {
         wait.until(ExpectedConditions.elementToBeClickable(goToHomePageButton));
         goToHomePageButton.click();
         return new HomePage(driver, wait);
+    }
+
+    public void clickChangeCurrency(int currencyIndex) {
+        WebElement listElements = currencyList.get(0);
+        listElements.click();
+        WebElement currencyChangeElement = changeCurrencyButtons.get(currencyIndex);
+        currencyChangeElement.click();
+
+       //dodane
     }
 }
 

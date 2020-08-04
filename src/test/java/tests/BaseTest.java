@@ -56,10 +56,10 @@ public class BaseTest {
         driver.quit();
     }
 
-    @Test
-    void shouldHomePageBeOpen() {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
-
-    }
+//    @Test
+//    void shouldHomePageBeOpen() {
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+//
+//    }
 }
