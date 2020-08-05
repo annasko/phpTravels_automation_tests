@@ -1,8 +1,11 @@
 # Testing phptravels.net
 Selenium test automation practices on the phptravels.net website.
  
-## Running
-Before the first run install packages listed in pom.xml file using Maven. 
+## Project setup
+All codebase written in Java (version 14). Before first run install external dependencies listed in the pom.xml file using Maven.
+External dependencies: 
+- JUnit,
+- Selenium. 
 
 Run tests using the standard Selenium way. The phptravel.net website is very buggy and frequently crashes, so tests should be repeated several times.
 

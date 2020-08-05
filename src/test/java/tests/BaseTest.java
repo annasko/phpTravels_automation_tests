@@ -9,7 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageobjects.AccountPage;
 import pageobjects.HomePage;
+import pageobjects.LoginPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -50,6 +52,15 @@ public class BaseTest {
         HomePage homePage = new HomePage(driver, wait);
         homePage.open();
         return homePage;
+    }
+
+    public HomePage loginAndGoToHomePage () {
+        HomePage homePage = openHomePage();
+        LoginPage loginPage = homePage.goToLoginPage();
+        loginPage.login("user@phptravels.com", "demouser");
+        AccountPage accountPage = loginPage.goToAccountPage();
+        accountPage.waitUntilAccountPageIsLoaded();
+       return accountPage.goToHomePage();
     }
 
     @BeforeEach

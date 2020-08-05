@@ -7,15 +7,15 @@ import pageobjects.*;
 public class BookHotelTest extends BaseTest {
     @Test
     void shouldCorrectlyBookingHotelDisplay() {
-
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
-        HomePage homePage = openHomePage();
-        LoginPage loginPage = homePage.goToLoginPage();
-        loginPage.login("user@phptravels.com", "demouser");
-        AccountPage accountPage = loginPage.goToAccountPage();
-        accountPage.waitUntilAccountPageIsLoaded();
-        accountPage.goToHomePage();
+////        HomePage homePage = new HomePage(driver, wait);
+////        homePage.open();
+//        HomePage homePage = openHomePage();
+//        LoginPage loginPage = homePage.goToLoginPage();
+//        loginPage.login("user@phptravels.com", "demouser");
+//        AccountPage accountPage = loginPage.goToAccountPage();
+//        accountPage.waitUntilAccountPageIsLoaded();
+//        accountPage.goToHomePage();
+        HomePage homePage = loginAndGoToHomePage();
         HotelDetailsPage hotelDetailsPage = homePage.goToTriaOneResultFoundPage();
         BookingConfirmationPage bookingConfirmationPage = hotelDetailsPage.goToBookPage();
         BookingSummaryPage bookingSummaryPage = bookingConfirmationPage.confirmHotelBooking();

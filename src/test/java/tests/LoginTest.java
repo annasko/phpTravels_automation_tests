@@ -65,7 +65,7 @@ class LoginTest extends BaseTest {
 //        LoginPage loginPage = homePage.goToLoginPage();
 //        loginPage.login("user@user.pl", "DemouseR");
 //        Assertions.assertTrue(loginPage.isDangerAlertTextCorrectlyDisplayed("Invalid Email or Password"));
-        shouldDisplayDangerAlertWhenWrongCredentialsProvided("user@user.pl", "DemouseR", "Invalid Email or Password\"");
+        shouldDisplayDangerAlertWhenWrongCredentialsProvided("user@user.pl", "DemouseR", "Invalid Email or Password");
     }
 
     @Test
