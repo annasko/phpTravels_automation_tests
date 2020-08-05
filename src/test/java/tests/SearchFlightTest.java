@@ -11,65 +11,73 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldOneWayResultsFoundDisplay() {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
         Assertions.assertTrue(flightListsPage.isFlightsPageDisplayed("WWA to DXB"));
     }
 
     @Test
     void shouldRoundTripResultsFoundDisplay() {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithRoundTripResults();
         Assertions.assertTrue(flightListsPage.isFlightsPageDisplayed("LHE to DXB and DXB to LHE"));
     }
 
     @Test
     void shouldReturnRoundTripWithChangeDepartAndReturnDataResultsFoundDisplay() {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithChangedDepartAndReturnDate();
         Assertions.assertTrue(flightListsPage.isFlightsPageDisplayed(" and return flight"));
     }
 
     @Test
     void shouldAdd100AdultsAndReturnTripResultsFoundDisplay() {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
-        FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithManyAdults();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
+        FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithManyAdults(100);
         BookingConfirmationPage bookFlightPage = flightListsPage.goToBookingConfirmationPage();
         Assertions.assertTrue(bookFlightPage.isNumberOfAdultsDisplayed("100"));
     }
 
     @Test
     void shouldChangeClassToBusinessAndReturnResultsFoundDisplay() {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithBusinessClass();
         Assertions.assertTrue(flightListsPage.isTypeClassTextDisplayed("business"));
     }
 
     @Test
     void shouldChangeClassToEconomyAndReturnResultsFoundDisplay() {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithEconomyClass();
         Assertions.assertTrue(flightListsPage.isTypeClassTextDisplayed("economy"));
     }
 
     @Test
     void shouldChangeClassToFirstAndReturnResultsFoundDisplay() {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithFirstClass();
         Assertions.assertTrue(flightListsPage.isTypeClassTextDisplayed("first"));
     }
 
     @Test
     void shouldChangeCurrencyToSAR() throws InterruptedException {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
         FlightListsPage reloadedFlightListPage = flightListsPage.changeCurrency(2);
         Assertions.assertTrue(reloadedFlightListPage.isCurrencyDisplayed("SAR"));
@@ -77,8 +85,9 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldChangeCurrencyToUSD() throws InterruptedException {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
         FlightListsPage reloadedFlightListPage = flightListsPage.changeCurrency(0);
         Assertions.assertTrue(reloadedFlightListPage.isCurrencyDisplayed("USD"));
@@ -87,8 +96,9 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldCorrectlyConvertCurrency() throws InterruptedException {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPageUSD = homePage.goToSearchFlightsPageWithResults("WWA");
         int usdValue = flightListsPageUSD.extractFirstFlightPriceValue();
         FlightListsPage flightListsPageJPY = flightListsPageUSD.changeCurrency(6);
@@ -98,16 +108,18 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldCorrectlyChangePriceRange() throws InterruptedException {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
         Assertions.assertTrue(flightListsPage.isNarrowerPriceRangeFlightsListCorrectlyDisplayed());
     }
 
     @Test
     void shouldCorrectlyChangeAirlines() {
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
         flightListsPage.selectAirArabiaAirlines();
         Assertions.assertTrue(flightListsPage.isAirlineNameCorrectlyDisplayed("Air Arabia Maroc"));

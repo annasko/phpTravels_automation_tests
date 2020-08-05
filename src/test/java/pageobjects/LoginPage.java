@@ -7,10 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
-    public LoginPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
-    }
-
     @FindBy(name = "username")
     WebElement emailField;
 
@@ -26,6 +22,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "/html/body/div/div[1]/section/div/div[1]/div[1]/div/h3")
     WebElement loginText;
 
+    public LoginPage(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
+    }
 
     public AccountPage goToAccountPage() {
         return new AccountPage(driver, wait);
@@ -42,18 +41,23 @@ public class LoginPage extends BasePage {
         return loginText.isDisplayed();
     }
 
-    public boolean isEmailRequiredAlertDisplayed() {
+    public boolean isDangerAlertTextCorrectlyDisplayed(String dangerAlertText) {
         wait.until(ExpectedConditions.visibilityOf(alertDanger));
-        return alertDanger.getText().contains("Invalid Email");
+        return alertDanger.getText().contains(dangerAlertText);
     }
 
-    public boolean isPasswordRequiredAlertDisplayed() {
-        wait.until(ExpectedConditions.visibilityOf(alertDanger));
-        return alertDanger.getText().contains("Password");
-    }
-
-    public boolean isEmailAndPasswordRequiredAlertDisplayed() {
-        wait.until(ExpectedConditions.visibilityOf(alertDanger));
-        return alertDanger.getText().contains("Invalid Email or Password");
-    }
+//    public boolean isEmailRequiredAlertDisplayed() {
+//        wait.until(ExpectedConditions.visibilityOf(alertDanger));
+//        return alertDanger.getText().contains("Invalid Email");
+//    }
+//
+//    public boolean isPasswordRequiredAlertDisplayed() {
+//        wait.until(ExpectedConditions.visibilityOf(alertDanger));
+//        return alertDanger.getText().contains("Password");
+//    }
+//
+//    public boolean isEmailAndPasswordRequiredAlertDisplayed() {
+//        wait.until(ExpectedConditions.visibilityOf(alertDanger));
+//        return alertDanger.getText().contains("Invalid Email or Password");
+//    }
 }

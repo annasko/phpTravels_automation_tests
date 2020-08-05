@@ -37,20 +37,15 @@ public class BasePage {
     WebElement goToHomePageButton;
 
     @FindBy(className = "text-center") //dodane
-    List<WebElement> changeCurrencyButtons;
+            List<WebElement> changeCurrencyButtons;
 
     @FindBy(className = "dropdown-currency") //dodane
-    List<WebElement> currencyList;
+            List<WebElement> currencyList;
 
     public BasePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         PageFactory.initElements(driver, this);
-    }
-
-
-    public void open() {
-        driver.get(URL);
     }
 
     public LoginPage goToLoginPage() {
@@ -69,25 +64,30 @@ public class BasePage {
         return new RegisterPage(driver, wait);
     }
 
-    public HomePage changeToRussianLanguage() {
-       return changeLanguage(russianLanguageButton);
+    public HomePage goToHomePage() {
+        wait.until(ExpectedConditions.elementToBeClickable(goToHomePageButton));
+        goToHomePageButton.click();
+        return new HomePage(driver, wait);
     }
 
-    public HomePage changeToGermanLanguage() {
-      return changeLanguage(germanLanguageButton);
-    }
-
-    public HomePage changeLanguage (WebElement languageButton) {
+    public HomePage changeLanguage(WebElement languageButton) {
         wait.until(ExpectedConditions.elementToBeClickable(changeLanguageButton));
         changeLanguageButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(languageButton));
         languageButton.click();
         return new HomePage(driver, wait);
     }
-    public HomePage goToHomePage() {
-        wait.until(ExpectedConditions.elementToBeClickable(goToHomePageButton));
-        goToHomePageButton.click();
-        return new HomePage(driver, wait);
+
+    public HomePage changeToRussianLanguage() {
+        return changeLanguage(russianLanguageButton);
+    }
+
+    public HomePage changeToGermanLanguage() {
+        return changeLanguage(germanLanguageButton);
+    }
+
+    public void open() {
+        driver.get(URL);
     }
 
     public void clickChangeCurrency(int currencyIndex) {
@@ -95,8 +95,6 @@ public class BasePage {
         listElements.click();
         WebElement currencyChangeElement = changeCurrencyButtons.get(currencyIndex);
         currencyChangeElement.click();
-
-       //dodane
     }
 }
 

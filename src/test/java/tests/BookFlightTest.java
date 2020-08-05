@@ -8,14 +8,15 @@ public class BookFlightTest extends BaseTest {
     @Test
     void shouldCorrectlyBookingFlightDisplay() {
 
-        HomePage homePage = new HomePage(driver, wait);
-        homePage.open();
+//        HomePage homePage = new HomePage(driver, wait);
+//        homePage.open();
+        HomePage homePage = openHomePage();
         LoginPage loginPage = homePage.goToLoginPage();
         loginPage.login("user@phptravels.com", "demouser");
         AccountPage accountPage = loginPage.goToAccountPage();
         accountPage.waitUntilAccountPageIsLoaded();
         accountPage.goToHomePage();
-        FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithManyAdults();
+        FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithManyAdults(100);
         BookingConfirmationPage bookFlightPage = flightListsPage.goToBookingConfirmationPage();
         BookingSummaryPage bookingSummaryPage = bookFlightPage.fillPassengerDataAndConfirm("Tadeusz", "30", "frgs4453");
         Assertions.assertTrue(bookingSummaryPage.isBookingAlertDisplayed());

@@ -12,10 +12,6 @@ import java.util.List;
 
 public class FlightListsPage extends BasePage {
 
-    public FlightListsPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
-    }
-
     @FindBy(className = "heading-title")
     WebElement headingTitleText;
 
@@ -46,9 +42,8 @@ public class FlightListsPage extends BasePage {
     @FindBy(className = "theme-search-results-item-flight-section-airline-title")
     WebElement nameOfAirlinesText;
 
-    public boolean isFlightsPageDisplayed(String text) {
-        wait.until(ExpectedConditions.elementToBeClickable(headingTitleText));
-        return headingTitleText.getText().contains(text);
+    public FlightListsPage(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
     }
 
     public BookingConfirmationPage goToBookingConfirmationPage() {
@@ -57,51 +52,25 @@ public class FlightListsPage extends BasePage {
         return new BookingConfirmationPage(driver, wait);
     }
 
+    public FlightListsPage changeCurrency(int newCurrencyIndexNumber) throws InterruptedException {
+        clickChangeCurrency(newCurrencyIndexNumber);
+        Thread.sleep(5000);
+        return new FlightListsPage(driver, wait);
+    }
+
+    public boolean isFlightsPageDisplayed(String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(headingTitleText));
+        return headingTitleText.getText().contains(text);
+    }
+
     public boolean isTypeClassTextDisplayed(String typeClass) {
         wait.until(ExpectedConditions.visibilityOf(typeClassText));
         return typeClassText.getText().contains(typeClass);
     }
-//    public void changeCurrency (int currencyIndex) {
-//        WebElement listElements = currencyList.get(0);
-//        listElements.click();
-//        WebElement currencyChangeElement = changeCurrencyButtons.get(currencyIndex);
-//        currencyChangeElement.click();
-//    }
-
-//    public boolean isChangeToSARCurrencyDisplayed(String currency) {
-////        WebElement listElements = currencyList.get(0);
-////        listElements.click();
-////        WebElement sarElement = changeCurrencyButtons.get(2);
-////        sarElement.click();
-//        clickChangeCurrency(2);
-//        wait.until(ExpectedConditions.visibilityOf(flightPrice));
-//        return flightPrice.getText().contains(currency);
-//    }
 
     public boolean isCurrencyDisplayed(String currency) {
         wait.until(ExpectedConditions.visibilityOf(flightPrice));
         return flightPrice.getText().contains(currency);
-    }
-
-    public int extractFirstFlightPriceValue() {
-        wait.until(ExpectedConditions.visibilityOf(flightPrice));
-        int flightPriceValue = Integer.parseInt(flightPrice.getText().substring(4));
-        return flightPriceValue;
-    }
-
-    public int extractPriceValueFromWebElement(WebElement priceElement) {
-        return Integer.parseInt(priceElement.getText().substring(4));
-
-    }
-
-    public FlightListsPage changeCurrency(int newCurrencyIndexNumber) throws InterruptedException {
-//        WebElement listElements = currencyList.get(0);
-//        listElements.click();
-//        WebElement currencyName = changeCurrencyButtons.get(newCurrencyIndexNumber);
-//        currencyName.click();
-        clickChangeCurrency(newCurrencyIndexNumber);
-        Thread.sleep(5000);
-        return new FlightListsPage(driver, wait);
     }
 
     public boolean isNarrowerPriceRangeFlightsListCorrectlyDisplayed() throws InterruptedException {
@@ -121,13 +90,22 @@ public class FlightListsPage extends BasePage {
     }
 
 
-    public void selectAirArabiaAirlines () {
-        wait.until(ExpectedConditions.visibilityOf(airArabiaAirlinesButton));
-        airArabiaAirlinesButton.click();
-    }
-
     public boolean isAirlineNameCorrectlyDisplayed(String airlineName) {
         return nameOfAirlinesText.getText().equals(airlineName);
     }
 
+    public int extractFirstFlightPriceValue() {
+        wait.until(ExpectedConditions.visibilityOf(flightPrice));
+        int flightPriceValue = Integer.parseInt(flightPrice.getText().substring(4));
+        return flightPriceValue;
+    }
+
+    private int extractPriceValueFromWebElement(WebElement priceElement) {
+        return Integer.parseInt(priceElement.getText().substring(4));
+    }
+
+    public void selectAirArabiaAirlines () {
+        wait.until(ExpectedConditions.visibilityOf(airArabiaAirlinesButton));
+        airArabiaAirlinesButton.click();
+    }
 }

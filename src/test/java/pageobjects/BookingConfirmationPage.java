@@ -29,12 +29,6 @@ public class BookingConfirmationPage extends BasePage {
         super(driver, wait);
     }
 
-    public boolean isNumberOfAdultsDisplayed(String text) {
-        wait.until(ExpectedConditions.visibilityOfAllElements(floatRightElements));
-        WebElement element = floatRightElements.get(5);
-        return element.getText().contains(text);
-    }
-
     public BookingSummaryPage fillPassengerDataAndConfirm(String name, String age, String passportNo) {
         wait.until(ExpectedConditions.elementToBeClickable(passengerName));
         passengerName.sendKeys(name);
@@ -51,5 +45,11 @@ public class BookingConfirmationPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(confirmBookingButton));
         confirmBookingButton.click();
         return new BookingSummaryPage(driver, wait);
+    }
+
+    public boolean isNumberOfAdultsDisplayed(String text) {
+        wait.until(ExpectedConditions.visibilityOfAllElements(floatRightElements));
+        WebElement element = floatRightElements.get(5);
+        return element.getText().contains(text);
     }
 }

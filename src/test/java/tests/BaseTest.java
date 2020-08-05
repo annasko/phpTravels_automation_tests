@@ -46,6 +46,12 @@ public class BaseTest {
         return driver;
     }
 
+    public HomePage openHomePage () {
+        HomePage homePage = new HomePage(driver, wait);
+        homePage.open();
+        return homePage;
+    }
+
     @BeforeEach
     void clearCookies() {
         driver.manage().deleteAllCookies();

@@ -28,7 +28,7 @@ public class AccountPage extends BasePage {
 
     public void clickOnLogoutButton() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement webElement = wait.until(ExpectedConditions.elementToBeClickable(hiDemoUserText));
+        wait.until(ExpectedConditions.elementToBeClickable(hiDemoUserText));
         wait.until(ExpectedConditions.elementToBeClickable(userDemoAccountButton));
         userDemoAccountButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(logoutButton));
