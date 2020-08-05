@@ -11,13 +11,13 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"search\"]/div/div/div/div/div/nav/ul/li[2]")
     WebElement flightsButton;
 
-    @FindBy(xpath = "//*[@id=\"select2-drop\"]/ul/li/ul/li[4]/div")
+    @FindBy(xpath = "//*[@id=\"select2-drop\"]/ul/li/ul/li/div")
     WebElement selectDisneylandParis;
 
     @FindBy(xpath = "//*[@id=\"select2-drop\"]/ul/li[1]/ul/li[1]/div")
     WebElement selectAlzerHotelInstanbul;
 
-    @FindBy(xpath = "//*[@id=\"select2-drop\"]/ul/li[1]/ul/li[2]")
+    @FindBy(xpath = "//*[@id=\"select2-drop\"]/ul/li[1]/ul/li/div")
     WebElement selectTriaHotelIstanbul;
 
     @FindBy(css = "div.locationlistHotels")
