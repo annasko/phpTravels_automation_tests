@@ -62,20 +62,14 @@ public class RegisterPage extends BasePage {
     }
 
     public boolean isPasswordTooShortAlertDisplayed() {
-//        wait.until(ExpectedConditions.visibilityOf(alertDanger));
-//        return alertDanger.getText().contains("The Password field must be at least 6 characters in");
       return  isAlertTextDisplayed("The Password field must be at least 6 characters in");
     }
 
     public boolean isConfirmPasswordAlertDisplayed() {
-//        wait.until(ExpectedConditions.visibilityOf(alertDanger));
-//        return alertDanger.getText().contains("Password not matching with confirm password.");
       return  isAlertTextDisplayed("Password not matching with confirm password.");
     }
 
     public boolean isEmailAlertDisplayed() {
-//        wait.until(ExpectedConditions.visibilityOf(alertDanger));
-//        return alertDanger.getText().contains("Email field must contain a valid email address");
        return isAlertTextDisplayed("Email field must contain a valid email address");
     }
 

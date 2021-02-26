@@ -46,18 +46,4 @@ public class LoginPage extends BasePage {
         return alertDanger.getText().contains(dangerAlertText);
     }
 
-//    public boolean isEmailRequiredAlertDisplayed() {
-//        wait.until(ExpectedConditions.visibilityOf(alertDanger));
-//        return alertDanger.getText().contains("Invalid Email");
-//    }
-//
-//    public boolean isPasswordRequiredAlertDisplayed() {
-//        wait.until(ExpectedConditions.visibilityOf(alertDanger));
-//        return alertDanger.getText().contains("Password");
-//    }
-//
-//    public boolean isEmailAndPasswordRequiredAlertDisplayed() {
-//        wait.until(ExpectedConditions.visibilityOf(alertDanger));
-//        return alertDanger.getText().contains("Invalid Email or Password");
-//    }
 }

@@ -11,8 +11,6 @@ public class RegisterTest extends BaseTest {
 
     @Test
     void shouldRegisterPageBeOpen() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         RegisterPage registerPage = homePage.goToRegisterPage();
         Assertions.assertTrue(registerPage.isRegisterPageDisplayed());
@@ -20,8 +18,6 @@ public class RegisterTest extends BaseTest {
 
     @Test
     void shouldRegisterWithCorrectData() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         RegisterPage registerPage = homePage.goToRegisterPage();
         registerPage.register("Piotr", "Nowak", "555555555", "pnowak@no.eu",
@@ -41,12 +37,6 @@ public class RegisterTest extends BaseTest {
 
     @Test
     void shouldDisplayEmailFieldMustContainAlertWhenWrongEmailIsProvided() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
-//        HomePage homePage = openHomePage();
-//        RegisterPage registerPage = homePage.goToRegisterPage();
-//        registerPage.register("Piotr", "Nowak", "555555555", "w", "123456", "123456");
-//        Assertions.assertTrue(registerPage.isEmailAlertDisplayed());
         RegisterPage registerPage = shouldDisplayDangerAlertWhenWrongCredentialsProvided("Piotr", "Nowak",
                 "555555555", "w", "123456", "123456");
         Assertions.assertTrue(registerPage.isEmailAlertDisplayed());
@@ -54,11 +44,6 @@ public class RegisterTest extends BaseTest {
 
     @Test
     void shouldDisplayPasswordTooShortAlertWhenShortPasswordIsProvided() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
-//        HomePage homePage = openHomePage();
-//        RegisterPage registerPage = homePage.goToRegisterPage();
-//        registerPage.register("Piotr", "Nowak", "555555555", "pinowak@no.pl", "123", "123");
         RegisterPage registerPage = shouldDisplayDangerAlertWhenWrongCredentialsProvided("Piotr", "Nowak",
                 "5555555555", "pinowak@no.pl", "123", "123");
         Assertions.assertTrue(registerPage.isPasswordTooShortAlertDisplayed());
@@ -66,11 +51,6 @@ public class RegisterTest extends BaseTest {
 
     @Test
     void shouldDisplayPasswordNotMatchingAlertWhenNotMatchingPasswordIsProvided() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
-//        HomePage homePage = openHomePage();
-//        RegisterPage registerPage = homePage.goToRegisterPage();
-//        registerPage.register("Piotr", "Nowak", "555555555", "piotnow@no.rr", "1234567", "123456");
         RegisterPage registerPage = shouldDisplayDangerAlertWhenWrongCredentialsProvided("Piotr", "Nowak",
                 "555555555", "poitnow@no.rr", "1234567", "123456");
         Assertions.assertTrue(registerPage.isConfirmPasswordAlertDisplayed());

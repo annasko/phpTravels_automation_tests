@@ -7,8 +7,6 @@ import pageobjects.HomePage;
 public class ChangeLanguageTest extends BaseTest {
     @Test
     void shouldChangeToRussianLanguage() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         HomePage russianHomePage = homePage.changeToRussianLanguage();
         Assertions.assertTrue(russianHomePage.isFlightNameTextCorrectlyDisplayed("ПОЛЕТЫ"));
@@ -16,8 +14,6 @@ public class ChangeLanguageTest extends BaseTest {
 
     @Test
     void shouldChangeToGermanLanguage() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         HomePage germanHomePage = homePage.changeToGermanLanguage();
         Assertions.assertTrue(germanHomePage.isFlightNameTextCorrectlyDisplayed("FLÜGE"));

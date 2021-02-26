@@ -38,8 +38,6 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldAdd100AdultsAndReturnTripResultsFoundDisplay() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithManyAdults(100);
         BookingConfirmationPage bookFlightPage = flightListsPage.goToBookingConfirmationPage();
@@ -48,8 +46,6 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldChangeClassToBusinessAndReturnResultsFoundDisplay() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithBusinessClass();
         Assertions.assertTrue(flightListsPage.isTypeClassTextDisplayed("business"));
@@ -57,8 +53,6 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldChangeClassToEconomyAndReturnResultsFoundDisplay() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithEconomyClass();
         Assertions.assertTrue(flightListsPage.isTypeClassTextDisplayed("economy"));
@@ -66,8 +60,6 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldChangeClassToFirstAndReturnResultsFoundDisplay() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithFirstClass();
         Assertions.assertTrue(flightListsPage.isTypeClassTextDisplayed("first"));
@@ -75,8 +67,6 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldChangeCurrencyToSAR() throws InterruptedException {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
         FlightListsPage reloadedFlightListPage = flightListsPage.changeCurrency(2);
@@ -85,8 +75,6 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldChangeCurrencyToUSD() throws InterruptedException {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
         FlightListsPage reloadedFlightListPage = flightListsPage.changeCurrency(0);
@@ -96,8 +84,6 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldCorrectlyConvertCurrency() throws InterruptedException {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         FlightListsPage flightListsPageUSD = homePage.goToSearchFlightsPageWithResults("WWA");
         int usdValue = flightListsPageUSD.extractFirstFlightPriceValue();
@@ -108,8 +94,6 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldCorrectlyChangePriceRange() throws InterruptedException {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
         Assertions.assertTrue(flightListsPage.isNarrowerPriceRangeFlightsListCorrectlyDisplayed());
@@ -117,8 +101,6 @@ public class SearchFlightTest extends BaseTest {
 
     @Test
     void shouldCorrectlyChangeAirlines() {
-//        HomePage homePage = new HomePage(driver, wait);
-//        homePage.open();
         HomePage homePage = openHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithResults("WWA");
         flightListsPage.selectAirArabiaAirlines();

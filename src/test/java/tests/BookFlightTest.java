@@ -7,15 +7,6 @@ import pageobjects.*;
 public class BookFlightTest extends BaseTest {
     @Test
     void shouldCorrectlyBookingFlightDisplay() {
-
-////        HomePage homePage = new HomePage(driver, wait);
-////        homePage.open();
-//        HomePage homePage = openHomePage();
-//        LoginPage loginPage = homePage.goToLoginPage();
-//        loginPage.login("user@phptravels.com", "demouser");
-//        AccountPage accountPage = loginPage.goToAccountPage();
-//        accountPage.waitUntilAccountPageIsLoaded();
-//        accountPage.goToHomePage();
         HomePage homePage = loginAndGoToHomePage();
         FlightListsPage flightListsPage = homePage.goToSearchFlightsPageWithRoundTripResults();
         BookingConfirmationPage bookFlightPage = flightListsPage.goToBookingConfirmationPage();

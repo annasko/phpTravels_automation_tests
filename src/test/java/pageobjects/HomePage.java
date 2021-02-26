@@ -79,9 +79,6 @@ public class HomePage extends BasePage {
         findDestinationHotelInput(hotelInputText);
         wait.until(ExpectedConditions.elementToBeClickable(hotelListSelectButton));
         hotelListSelectButton.click();
-//        wait.until(ExpectedConditions.elementToBeClickable(searchHotelsButton));
-//        searchHotelsButton.click();
-//        return new HotelDetailsPage(driver, wait);
         return submitSearchHotelForm();
     }
 
@@ -123,9 +120,6 @@ public class HomePage extends BasePage {
             wait.until(ExpectedConditions.elementToBeClickable(addAdultToFlightsButton));
             addAdultToFlightsButton.click();
         }
-//        wait.until(ExpectedConditions.elementToBeClickable(searchFlightsButton));
-//        searchFlightsButton.click();
-//        return new FlightListsPage(driver, wait);
         return submitSearchFlightForm();
     }
 
@@ -137,9 +131,6 @@ public class HomePage extends BasePage {
         searchTypeClass.click();
         wait.until(ExpectedConditions.elementToBeClickable(classTypeButton));
         classTypeButton.click();
-//        wait.until(ExpectedConditions.elementToBeClickable(searchFlightsButton));
-//        searchFlightsButton.click();
-//        return new FlightListsPage(driver, wait);
         return submitSearchFlightForm();
     }
 
